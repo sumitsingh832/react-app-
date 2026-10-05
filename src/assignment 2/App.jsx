@@ -59,10 +59,10 @@
 
 import { BrowserRouter, Navigate, Routes, Route } from "react-router";
 
-import Analytics from "../assignment 2/analytics.jsx";
-import DashboardLayout from "../assignment 2/Dashboardlayout.jsx";
-import DashboardHome from "../assignment 2/dashbord.jsx";
-import Settings from "../assignment 2/setting.jsx";
+import Analytics from "./analytics.jsx";
+import DashboardLayout from "./Dashboardlayout.jsx";
+import DashboardHome from "./dashbord.jsx";
+import Settings from "./setting.jsx";
 
 function App() {
   return (
