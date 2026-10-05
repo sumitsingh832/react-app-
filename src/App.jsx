@@ -1,57 +1,57 @@
-// import Header from "./components/Header";
-// import Main from "./components/Main";
-// import Footer from "./components/Footer";
+import { useState } from "react";
 
-// function App(){
-//   <>
-//   <Header />
-//   <Main />
-//   <Footer />
-//   </>
-// }
+const initialImages = [
+  "https://fastly.picsum.photos/id/551/200/300.jpg?hmac=pXJCWIikY_BiqwhtawBb8x1jxclDny0522ZprZVTJiU",
+  "https://fastly.picsum.photos/id/566/200/300.jpg?hmac=gDpaVMLNupk7AufUDLFHttohsJ9-C17P7L-QKsVgUQU",
+  "https://fastly.picsum.photos/id/732/200/300.jpg?hmac=mBueuWVJ8LlL-R7Yt9w1ONAFVayQPH5DzVSO-lPyI9w",
+  "https://fastly.picsum.photos/id/633/200/300.jpg?hmac=TdUWNg34fjigifBBMXrwci0tVpiezw92QqwoO2oDJak",
+];
 
-// export default  App;
+function App() {
+  const [index, setIndex] = useState(0);
 
-import Profile from "./profile card/profile";
+  const handlePrev = () => {
+    setIndex((currentIndex) => Math.max(currentIndex - 1, 0));
+  };
 
-function App(){
-    const user1={
-     name :"Sumit",
-     age :"20",
-     role:"backend developer",
-    };
-    const user2={
-     name :"Alice",
-     age :"25",
-     role:"frontend developer",
-    }
-    const user3={
-     name :"charlie",
-     age :"18",
-     role:"ui/ux designer",
-    }
+  const handleNext = () => {
+    setIndex((currentIndex) =>
+      Math.min(currentIndex + 1, initialImages.length - 1),
+    );
+  };
 
-    return(
-        <div>
-            <h1>user profile </h1>
-         
-        <Profile
-         name={user1.name}
-         age={user1.age}
-         role={user1.role}
-         />
-        <Profile
-         name={user2.name}
-         age={user2.age}
-         role={user2.role}
-         />
-          <Profile
-         name={user3.name}
-         age={user3.age}
-         role={user3.role}
-         />
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <button onClick={handlePrev} disabled={index === 0}>
+        Prev
+      </button>
+
+      <div style={{ width: "200px", height: "300px", overflow: "hidden" }}>
+        <div
+          style={{
+            display: "flex",
+            transform: `translateX(-${index * 200}px)`,
+            transition: "transform 300ms ease",
+          }}
+        >
+          {initialImages.map((image, imageIndex) => (
+            <img
+              key={`${image}-${imageIndex}`}
+              src={image}
+              alt={`Gallery image ${imageIndex + 1}`}
+              width="200"
+              height="300"
+              style={{ flex: "0 0 200px", objectFit: "cover" }}
+            />
+          ))}
         </div>
-    )
-}
-export default App;
+      </div>
 
+      <button onClick={handleNext} disabled={index === initialImages.length - 1}>
+        Next
+      </button>
+    </div>
+  );
+}
+
+export default App;
