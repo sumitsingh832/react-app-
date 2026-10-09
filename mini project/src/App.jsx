@@ -1,1 +1,9 @@
-export { default } from "./assignment 32/App.jsx";
+
+
+import ModernDashboard from "./ModernDashboard";
+
+function App() {
+  return <ModernDashboard />;
+}
+
+export default App;
